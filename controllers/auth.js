@@ -5,9 +5,11 @@ const findUser = require('../util/helpers').findUser;
 exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
-  const isValidUser = findUser(users, email, password);
+  const userData = findUser(users, email, password);
 
-  if (isValidUser) {
+  if (!!userData) {
+    const { password, ...user } = userData;
+
     res.status(200).json({
       success: true,
       data: {
@@ -15,6 +17,7 @@ exports.login = (req, res, next) => {
           expiresIn: process.env.JWT_EXPIRE,
         }),
       },
+      user,
     });
   } else {
     res.status(401).json({ success: false });
