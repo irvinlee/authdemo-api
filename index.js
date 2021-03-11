@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 const { getFullUrl } = require('./util/helpers');
 
@@ -8,7 +9,7 @@ dotenv.config('.env');
 
 //misc
 app.use(bodyParser.json());
-
+app.use(cors());
 //routing
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
