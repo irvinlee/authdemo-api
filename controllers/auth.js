@@ -21,7 +21,7 @@ exports.login = (req, res, next) => {
     });
   } else {
     res
-      .status(201)
+      .status(200)
       .json({ success: false, message: 'Invalid username or password' });
   }
 
