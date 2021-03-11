@@ -16,8 +16,8 @@ exports.login = (req, res, next) => {
         jwt_token: jwt.sign({ email }, process.env.JWT_SECRET_CODE, {
           expiresIn: process.env.JWT_EXPIRE,
         }),
+        user,
       },
-      user,
     });
   } else {
     res
